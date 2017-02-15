@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = csrf_meta_tags
+
+    title = content_for?(:title) ? yield(:title) : 'Workouts'
+
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
+    link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"
+
+  body
+    .top-bar
+      .top-bar-left
+        ul.dropdown.menu(data-dropdown-menu)
+          li.menu-text Workouts
+          li.show-for-medium-only : span.label Medium
+          li.show-for-large-only : span.label Large
+          li.hide-for-small-only = link_to 'Exercises', exercises_path
+      .top-bar-right
+        ul.dropdown.menu(data-dropdown-menu)
+          //li = link_to 'New', new_workout_path, class: 'button'
+
+    .content
+      .row
+        .columns.small-12
+          = yield
