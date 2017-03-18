@@ -1,0 +1,16 @@
+p#notice = notice
+
+dl
+  dt Exercise:
+  dd = @workout.exercise.name
+
+  dt Reps:
+  dd = @workout.reps
+
+  dt Weight:
+  dd = @workout.weight
+
+  dt Performed at:
+  dd = @workout.performed_at
+
+= link_to 'Edit', edit_workout_path(@workout), class: 'button'

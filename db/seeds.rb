@@ -7,11 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 [
+  'ab wheel',
+  'bench press',
   'calf raise',
+  'chinups',
   'cuban press',
   'dips',
   'deadlift',
   'external rotation',
+  'incline press',
+  'lateral raises',
+  'lunges',
   'overhead press',
   'pushups',
   'pullups',
@@ -19,4 +25,15 @@
   'squat',
 ].each do |exercise|
   Exercise.create(name: exercise)
+end
+
+[1,2,3,5,7,8,9,11].each do |days_ago|
+  rand(10).times do
+    Workout.create(
+      exercise: Exercise.all.sample,
+      performed_at: days_ago.days.ago,
+      reps: rand(12),
+      weight: [25,50,75,100].sample
+    )
+  end
 end

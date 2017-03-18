@@ -1,0 +1,13 @@
+= simple_form_for(@workout) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :exercise
+    .row.small-up-2
+      .column = f.input :reps
+      .column = f.input :weight
+    .show-for-medium
+      = f.input :performed_at
+
+  .form-actions
+    = f.button :submit, class: 'expanded'

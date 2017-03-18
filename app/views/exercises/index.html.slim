@@ -4,15 +4,19 @@ table
   thead
     tr
       th Name
-      th
+      th Last
+      th Min
+      th Max
       th
       th
 
   tbody
     - @exercises.each do |exercise|
       tr
-        td = exercise.name
-        td = link_to 'Show', exercise
+        td = link_to exercise.name, exercise
+        td = exercise.workouts.last.created_at
+        td = exercise.workouts.order(:weight).first.try(:weight)
+        td = exercise.workouts.order(:weight).last.try(:weight)
         td = link_to 'Edit', edit_exercise_path(exercise)
         td = link_to 'Destroy', exercise, data: { confirm: 'Are you sure?' }, method: :delete
 
