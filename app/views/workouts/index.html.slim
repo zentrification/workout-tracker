@@ -1,26 +1,23 @@
-.text-center
-  h3 You last worked out #{distance_of_time_in_words(Time.now, Workout.last.created_at)} ago
-  br
+- unless current_user.workouts.any?
+  h3 No Workouts
+
+- else
+  .text-center
+    h3 You last worked out #{distance_of_time_in_words(Time.now, current_user.workouts.last.created_at)} ago
+    br
 
 
 
-- @workouts.group_by { |x| x.performed_at.strftime('%F') }.each do |date, workouts_day|
-  h3.date = date
-  - workouts_day.group_by { |x| x.exercise.name }.each do |name, workout_group|
-    .exercise
-      div = name
-      div
-        ul.menu.simple
-          - workout_group.each do |workout|
-            - weight = if workout.weight.to_i.to_f == workout.weight then workout.weight.to_i else workout.weight end
-            li = link_to "#{workout.reps}@#{weight}lbs", workout
-//
-  td = link_to 'Edit', edit_workout_path(workout)
-  td = link_to 'Destroy', workout, data: { confirm: 'Are you sure?' }, method: :delete
-
-sass:
-  .date
-    border-bottom: 1px solid #666
-    padding-bottom: 0.25em
-  .exercise
-    margin-bottom: 0.75em
+  - @workouts.group_by { |x| x.performed_at.strftime('%F') }.each do |date, workouts_day|
+    h3.workout-date = date
+    - workouts_day.sort_by { |x| x.exercise.name }.group_by { |x| x.exercise.name }.each do |name, workout_group|
+      .workout-exercise
+        div = name.capitalize
+        div
+          ul.menu.simple
+            - workout_group.each do |workout|
+              - weight = if workout.weight.to_i.to_f == workout.weight then workout.weight.to_i else workout.weight end
+              li #{workout.reps}x#{weight}lbs
+  //
+    td = link_to 'Edit', edit_workout_path(workout)
+    td = link_to 'Destroy', workout, data: { confirm: 'Are you sure?' }, method: :delete

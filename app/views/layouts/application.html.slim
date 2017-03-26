@@ -27,6 +27,8 @@ html
               li = link_to 'New', new_workout_path
               li = link_to 'All', workouts_path
               li = link_to 'Exercises', exercises_path
+              - if current_user
+                li = link_to 'Logout', destroy_user_session_path, method: :delete
 
     .content
       .row
