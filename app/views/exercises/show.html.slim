@@ -1,9 +1,5 @@
-p#notice = notice
+h1 Exercise - #{@exercise.name}
 
-p
-  strong Name:
-  = @exercise.name
-
-= link_to 'Edit', edit_exercise_path(@exercise)
-'|
-= link_to 'Back', exercises_path
+.button-group
+  = link_to 'Edit', edit_exercise_path(@exercise), class: 'button'
+  = link_to 'Delete', @exercise, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button secondary'

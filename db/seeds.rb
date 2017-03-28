@@ -9,31 +9,25 @@
 [
   'ab wheel',
   'bench press',
+  'bent over rows',
   'calf raise',
-  'chinups',
+  'chinup',
   'cuban press',
   'dips',
   'deadlift',
   'external rotation',
+  'face pulls',
   'incline press',
-  'lateral raises',
+  'lateral raise',
   'lunges',
   'overhead press',
-  'pushups',
-  'pullups',
+  'pushup',
+  'pullup',
+  'reverse fly',
   'rows',
+  'shoulder press',
   'squat',
+  'stiff leg deadlift',
 ].each do |exercise|
   Exercise.create(name: exercise)
-end
-
-[1,2,3,5,7,8,9,11].each do |days_ago|
-  rand(10).times do
-    Workout.create(
-      exercise: Exercise.all.sample,
-      performed_at: days_ago.days.ago,
-      reps: rand(12),
-      weight: [25,50,75,100].sample
-    )
-  end
 end
