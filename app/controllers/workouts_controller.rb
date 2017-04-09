@@ -4,7 +4,7 @@ class WorkoutsController < ApplicationController
   # GET /workouts
   # GET /workouts.json
   def index
-    @workouts = current_user.workouts.preload(:exercise)
+    @workouts = current_user.workouts.preload(:exercise).order('performed_at desc')
   end
 
   # GET /workouts/1
