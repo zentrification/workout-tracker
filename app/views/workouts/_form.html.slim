@@ -1,17 +1,23 @@
-= simple_form_for(@workout) do |f|
-  = f.error_notification
+.row.column.medium-6
+  = simple_form_for(@workout) do |f|
 
-  .form-inputs
     label Exercise
     .input-group
       = f.association :exercise, label: false, input_html: { class: 'input-group-field' }
       .input-group-button
         = link_to 'New', new_exercise_path, class: 'button'
+
+    .row.small-up-2
+      .column
+        = f.input :weight
+      .column
+        label &nbsp;
+        = f.input :weight_type, as: :select, collection: %w(Dumbell Barbell Bodyweight), include_blank: false, label: false
+
     .row.small-up-2
       .column = f.input :reps
-      .column = f.input :weight
+
     .show-for-medium
       = f.input :performed_at
 
-  .form-actions
     = f.button :submit, class: 'expanded'
