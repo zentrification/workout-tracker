@@ -12,6 +12,14 @@ class WorkoutsController < ApplicationController
   def show
   end
 
+  def repeat
+    @workout = Workout.find(params[:id]).dup
+    @reps = @workout.reps
+    @weight = @workout.weight
+    @workout.reps = @workout.weight = nil
+    render :new
+  end
+
   # GET /workouts/new
   def new
     @workout = Workout.new

@@ -12,7 +12,9 @@
     h3.workout-date = date
     - workouts_day.sort_by { |x| x.exercise.name }.group_by { |x| x.exercise.name }.each do |name, workout_group|
       .workout-exercise
-        div = name.capitalize
+        div
+          .float-right = link_to 'Repeat', repeat_workout_path(workout_group.last)
+          = name.capitalize
         div
           ul.menu.simple
             - workout_group.each do |workout|
